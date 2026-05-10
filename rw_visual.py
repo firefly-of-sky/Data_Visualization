@@ -5,7 +5,7 @@ from random_walk import RandomWalk
 # 只要程序处于活动状态，就不断地模拟随机游走
 while(True):
     # 创建一个RandomWalk实例
-    rw = RandomWalk(50_000)
+    rw = RandomWalk(5_000)
     rw.fill_walk()
 
     # 将所有点都绘制出来
@@ -13,8 +13,7 @@ while(True):
     plt.style.use('classic')
     fig, ax = plt.subplots(figsize=(10, 6), dpi=144)
     point_numbers = range(rw.num_points)
-    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,
-               edgecolors='none', s=1)
+    ax.plot(rw.x_values, rw.y_values, linewidth=0.5)
     ax.set_aspect('equal')
 
     # 突出起点和终点
