@@ -3,12 +3,12 @@ import plotly.express as px
 from die import Die
 
 # 创建一个D6 和一个 D10 
-die_1 = Die()
-die_2 = Die(10)
+die_1 = Die(8)
+die_2 = Die(8)
 
 # 掷几次骰子并将结果存储在一个列表中
 results = []
-for roll_num in range(50_000):
+for roll_num in range(10_000):
     result = die_1.roll() + die_2.roll()
     results.append(result)
 
@@ -28,5 +28,5 @@ fig = px.bar(x=poss_results, y=frequencies, title=title, labels=labels)
 # 进一步定制图形
 fig.update_layout(xaxis_dtick=1)
 
-# fig.show()
-fig.write_html("dice_visual_d6d10.html")
+fig.show()
+# fig.write_html("dice_visual_d6d10.html")
