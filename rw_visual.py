@@ -5,7 +5,7 @@ from random_walk import RandomWalk
 # 只要程序处于活动状态，就不断地模拟随机游走
 while(True):
     # 创建一个RandomWalk实例
-    rw = RandomWalk()
+    rw = RandomWalk(50_000)
     rw.fill_walk()
 
     # 将所有点都绘制出来
