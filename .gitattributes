@@ -1,0 +1,4 @@
+# Keep data/output files from affecting GitHub language stats
+*.html linguist-generated
+*.geojson linguist-generated
+*.csv linguist-generated
