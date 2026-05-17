@@ -11,14 +11,23 @@ lines = path.read_text().splitlines()
 reader = csv.reader(lines)
 header_row = next(reader)
 
+# 自动获取索引
+date_index = header_row.index('DATE')
+high_index = header_row.index('TMAX')
+low_index = header_row.index('TMIN')
+name_index = header_row.index('NAME')
+
 
 # 提取日期,最高温度,和最低温度
 dates, highs, lows = [], [], []
+place_name = ""
 for row in reader:
-    current_date = datetime.strptime(row[2], '%Y-%m-%d')
+    if not place_name:
+        place_name = row[name_index]
+    current_date = datetime.strptime(row[date_index], '%Y-%m-%d')
     try:
-        high = int(row[3])
-        low = int(row[4])
+        high = int(row[high_index])
+        low = int(row[low_index])
     except ValueError:
         print(f"Missing data for {current_date}")
     else:
@@ -34,7 +43,7 @@ ax.plot(dates, lows, color='blue', alpha=0.5)
 ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # 设置绘图的格式
-title = "Daily High and Low Temperatures, 2021\nDeath Valley, CA"
+title = f"Daily High and Low Temperatures, 2021\n{place_name}"
 ax.set_title(title, fontsize=20)
 ax.set_xlabel('', fontsize=16)
 fig.autofmt_xdate()
